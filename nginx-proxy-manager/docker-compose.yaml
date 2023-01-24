@@ -13,3 +13,8 @@ services:
     volumes:
       - /nginx/data:/data
       - /nginx/etc/letsencrypt:/etc/letsencrypt
+    networks:
+      - nginx
+
+networks:
+  nginx:
