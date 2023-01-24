@@ -26,3 +26,5 @@ services:
     restart: always
     environment:
       - PMA_HOST=mysql
+    networks:
+      - nginx-proxy-manager_nginx
