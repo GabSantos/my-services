@@ -30,4 +30,5 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=password
       - PHP_TZ=America/Sao_Paulo
-
+    networks:
+      - nginx-proxy-manager_nginx
