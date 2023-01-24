@@ -10,8 +10,10 @@ services:
       - /portainer/etc/localtime:/etc/localtime:ro
       - /portainer/var/run/docker.sock:/var/run/docker.sock:ro
       - /portainer/data:/data
+    networks:
+      - nginx-proxy-manager_nginx
 
 networks:
-  default:
-    external:
-      name: nginx-proxy-manager_nginx
+  nginx-proxy-manager_nginx:
+    external: true
+    name: nginx-proxy-manager_nginx
