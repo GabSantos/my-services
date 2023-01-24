@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    restart: always
+    volumes:
+      - /grafana:/var/lib/grafana
+    networks:
+      - nginx-proxy-manager_nginx
+
+networks:
+  nginx-proxy-manager_nginx:
+    external: true
+    name: nginx-proxy-manager_nginx

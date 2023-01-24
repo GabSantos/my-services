@@ -1,0 +1,20 @@
+version: '3.9'
+
+networks:
+  nginx-proxy-manager_nginx:
+    external: true
+    name: nginx-proxy-manager_nginx
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    volumes:
+      - /zabbix/mysql:/var/lib/data
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=mysql
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    networks:
+      - nginx-proxy-manager_nginx

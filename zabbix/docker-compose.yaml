@@ -1,0 +1,33 @@
+version: '3.9'
+
+networks:
+  nginx-proxy-manager_nginx:
+    external: true
+    name: nginx-proxy-manager_nginx
+
+services:
+  zabbix-server:
+    container_name: zabbix-server
+    image: zabbix/zabbix-server-mysql
+    restart: always
+    volumes:
+      - /zabbix/alertscripts:/usr/lib/zabbix/alertscripts
+    environment:
+      - DB_SERVER_HOST=mysql
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    networks:
+      - nginx-proxy-manager_nginx
+  
+  zabbix-frontend:
+    container_name: zabbix-frontend
+    image: zabbix/zabbix-web-apache-mysql
+    restart: always
+    environment:
+      - DB_SERVER_HOST=mysql
+      - MYSQL_DATABASE=zabbix
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - PHP_TZ=America/Sao_Paulo
+

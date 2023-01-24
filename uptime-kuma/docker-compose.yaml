@@ -1,0 +1,15 @@
+version: '3.9'
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    restart: always
+    volumes:
+      - /uptime-kuma:/app/data
+    networks:
+      - nginx-proxy-manager_nginx
+
+networks:
+  nginx-proxy-manager_nginx:
+    external: true
+    name: nginx-proxy-manager_nginx
